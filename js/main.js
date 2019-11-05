@@ -4,24 +4,91 @@
 function update() {
 	console.log(player1);
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	drawPlatforms();
 	board.draw();
 	player1.draw();
 	player2.draw();
+	player1.moveLeft();
+	player2.moveLeft();
+	player1.moveRigth();
+	player2.moveRigth();
+	player1.jump();
+	player2.jump();
 
-	player1.x += player1.velX;
-	player1.velX *= friction;
+	checkCollition();
 
-	player1.x += player1.velX;
-	player1.velX *= friction;
+	/** 
+     * Check collitions for player 1
+    */
+	player1.grounded = false;
+	platforms.map((platform) => {
+		const direction = collisionCheck(player1, platform);
+		if (direction == 'left' || direction == 'right') {
+			player1.velX = 0;
+		} else if (direction == 'bottom') {
+			player1.jumping = false;
+			player1.grounded = true;
+		} else if (direction == 'top') {
+			player1.velY *= -1;
+		}
+	});
 
-	player1.y += player1.velY;
-	player1.velY += gravity;
+	if (player1.grounded) {
+		player1.velY = 0;
+	}
+
+	/** 
+     * Check collitions for player 2
+    */
+	player2.grounded = false;
+	platforms.map((platform) => {
+		const direction = collisionCheck(player2, platform);
+		if (direction == 'left' || direction == 'right') {
+			player2.velX = 0;
+		} else if (direction == 'bottom') {
+			player2.jumping = false;
+			player2.grounded = true;
+		} else if (direction == 'top') {
+			player2.velY *= -1;
+		}
+	});
+
+	if (player2.grounded) {
+		player2.velY = 0;
+	}
 }
 
+/**
+ * Start game
+ */
 function startGame() {
 	gameStarted = true;
 	if (interval) return;
 	interval = setInterval(update, 1000 / 60);
+}
+
+/**
+ * End game
+ */
+function gameOver() {
+	clearInterval(interval);
+}
+
+/**
+ * Draw the platforms
+ */
+function drawPlatforms() {
+	ctx.fillStyle = '#333333';
+	platforms.map((platform) => platform.draw());
+}
+
+/**
+ * Are players touching
+ */
+function checkCollition() {
+	if (player1.isTouching(player2)) {
+		gameOver();
+	}
 }
 
 /**

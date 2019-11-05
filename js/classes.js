@@ -21,14 +21,14 @@ class Board {
 class Player1 {
 	constructor() {
 		this.x = 50;
-		this.y = canvas.height - 135;
-		this.width = 100;
-		this.height = 100;
+		this.y = canvas.height - 450;
+		this.width = 60;
+		this.height = 60;
 		this.speed = 7;
 		this.velX = 0;
 		this.velY = 0;
 		this.jumping = false;
-		this.jumpStrength = 5;
+		this.jumpStrength = 8;
 		this.grounded = false;
 		this.img = new Image();
 		this.img.src = images.dino;
@@ -39,46 +39,61 @@ class Player1 {
 
 	draw() {
 		console.log('Printed dino');
-		ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+		ctx.drawImage(this.img, 20, 20, 375, 395, this.x, this.y, this.width, this.height);
 	}
 
 	moveLeft() {
-		if (this.velX > -this.speed) {
-			this.velX--;
+		if (keys[65]) {
+			if (this.velX > -this.speed) {
+				this.velX--;
+			}
 		}
-		// this.x += this.velX;
-		// this.velX *= friction;
+		this.x += this.velX;
+		this.velX *= friction;
 	}
 
 	moveRigth() {
-		if (this.velX < this.speed) {
-			this.velX++;
+		if (keys[68]) {
+			if (this.velX < this.speed) {
+				this.velX++;
+			}
 		}
-		// this.x += this.velX;
-		// this.velX *= friction;
+		this.x += this.velX;
+		this.velX *= friction;
 	}
 
 	jump() {
-		if (!this.jumping) {
-			this.velY = -this.jumpStrength * 4;
-			this.jumping = true;
+		if (keys[87] || keys[32]) {
+			if (!this.jumping) {
+				this.velY = -this.jumpStrength * 2;
+				this.jumping = true;
+			}
 		}
-		// this.y += this.velY;
-		// this.velY += gravity;
+		this.y += this.velY;
+		this.velY += gravity;
+	}
+
+	isTouching(obstacle) {
+		return (
+			this.x < obstacle.x + obstacle.width &&
+			this.x + this.width > obstacle.x &&
+			this.y < obstacle.y + obstacle.height &&
+			this.y + this.height > obstacle.y
+		);
 	}
 }
 
 class Player2 {
 	constructor() {
-		this.x = 500;
-		this.y = canvas.height - 135;
-		this.width = 100;
-		this.height = 100;
-		this.speed = 5;
+		this.x = 550;
+		this.y = canvas.height - 250;
+		this.width = 60;
+		this.height = 60;
+		this.speed = 7;
 		this.velX = 0;
 		this.velY = 0;
 		this.jumping = false;
-		this.jumpStrength = 7;
+		this.jumpStrength = 8;
 		this.grounded = false;
 		this.img = new Image();
 		this.img.src = images.santa;
@@ -89,32 +104,47 @@ class Player2 {
 
 	draw() {
 		console.log('Printed santa');
-		ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+		ctx.drawImage(this.img, 235, 35, 290, 550, this.x, this.y, this.width, this.height);
 	}
 
 	moveLeft() {
-		if (this.velX > -this.speed) {
-			this.velX--;
+		if (keys[100]) {
+			if (this.velX > -this.speed) {
+				this.velX--;
+			}
 		}
 		this.x += this.velX;
 		this.velX *= friction;
 	}
 
 	moveRigth() {
-		if (this.velX < this.speed) {
-			this.velX++;
+		if (keys[102]) {
+			if (this.velX < this.speed) {
+				this.velX++;
+			}
 		}
 		this.x += this.velX;
 		this.velX *= friction;
 	}
 
 	jump() {
-		if (!this.jumping) {
-			this.velY = -this.jumpStrength * 2;
-			this.jumping = true;
+		if (keys[104] || keys[13]) {
+			if (!this.jumping) {
+				this.velY = -this.jumpStrength * 2;
+				this.jumping = true;
+			}
 		}
 		this.y += this.velY;
 		this.velY += gravity;
+	}
+
+	isTouching(obstacle) {
+		return (
+			this.x < obstacle.x + obstacle.width &&
+			this.x + this.width > obstacle.x &&
+			this.y < obstacle.y + obstacle.height &&
+			this.y + this.height > obstacle.y
+		);
 	}
 }
 
@@ -123,8 +153,11 @@ class Platform {
 		this.x = x;
 		this.y = y;
 		this.width = width;
-		this.height = heigth;
+		this.height = height;
 	}
 
-	draw() {}
+	draw() {
+		ctx.fillStyle = '#fff000';
+		ctx.fillRect(this.x, this.y, this.width, this.height);
+	}
 }
