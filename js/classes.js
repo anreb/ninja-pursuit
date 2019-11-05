@@ -46,16 +46,16 @@ class Player1 {
 		if (this.velX > -this.speed) {
 			this.velX--;
 		}
-		this.x += this.velX;
-		this.velX *= friction;
+		// this.x += this.velX;
+		// this.velX *= friction;
 	}
 
 	moveRigth() {
 		if (this.velX < this.speed) {
 			this.velX++;
 		}
-		this.x += this.velX;
-		this.velX *= friction;
+		// this.x += this.velX;
+		// this.velX *= friction;
 	}
 
 	jump() {
@@ -63,8 +63,8 @@ class Player1 {
 			this.velY = -this.jumpStrength * 4;
 			this.jumping = true;
 		}
-		this.y += this.velY;
-		this.velY += gravity;
+		// this.y += this.velY;
+		// this.velY += gravity;
 	}
 }
 

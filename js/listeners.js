@@ -1,10 +1,14 @@
 /**
 * Game listeners
 */
-document.onkeydown = (e) => {
+document.body.addEventListener('keydown', (e) => {
 	switch (e.keyCode) {
 		case 13:
-			startGame();
+			if (!gameStarted) {
+				startGame();
+			}
+			//para movimiento
+			keys[e.keyCode] = true;
 			break;
 		case 37:
 			player1.moveLeft();
@@ -18,14 +22,6 @@ document.onkeydown = (e) => {
 		case 40:
 			break;
 	}
-	keys[e.keyCode] = true;
-};
-
-document.body.addEventListener('keydown', (e) => {
-	if (e.keyCode === 13 && !gameStarted) {
-		startGame();
-	}
-	//para movimiento
 	keys[e.keyCode] = true;
 });
 

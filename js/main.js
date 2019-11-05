@@ -7,6 +7,15 @@ function update() {
 	board.draw();
 	player1.draw();
 	player2.draw();
+
+	player1.x += player1.velX;
+	player1.velX *= friction;
+
+	player1.x += player1.velX;
+	player1.velX *= friction;
+
+	player1.y += player1.velY;
+	player1.velY += gravity;
 }
 
 function startGame() {
