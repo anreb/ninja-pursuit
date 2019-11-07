@@ -8,6 +8,11 @@ document.body.addEventListener('keydown', (e) => {
 				startGame();
 			}
 			break;
+		case 82:
+			console.log('Pressing r', winner);
+			if (winner) {
+				restartGame();
+			}
 	}
 	keys[e.keyCode] = true;
 });

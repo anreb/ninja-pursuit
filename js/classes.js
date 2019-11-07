@@ -39,7 +39,7 @@ class Player1 {
 
 	draw() {
 		console.log('Printed dino');
-		ctx.drawImage(this.img, 20, 20, 375, 395, this.x, this.y, this.width, this.height);
+		ctx.drawImage(this.img, 20, 42, 375, 395, this.x, this.y, this.width, this.height);
 	}
 
 	moveLeft() {
@@ -87,7 +87,7 @@ class Player2 {
 	constructor() {
 		this.x = 550;
 		this.y = canvas.height - 250;
-		this.width = 60;
+		this.width = 35;
 		this.height = 60;
 		this.speed = 7;
 		this.velX = 0;
@@ -104,7 +104,7 @@ class Player2 {
 
 	draw() {
 		console.log('Printed santa');
-		ctx.drawImage(this.img, 235, 35, 290, 550, this.x, this.y, this.width, this.height);
+		ctx.drawImage(this.img, 240, 35, 290, 530, this.x, this.y, this.width, this.height);
 	}
 
 	moveLeft() {
@@ -128,7 +128,7 @@ class Player2 {
 	}
 
 	jump() {
-		if (keys[104] || keys[13]) {
+		if (keys[104]) {
 			if (!this.jumping) {
 				this.velY = -this.jumpStrength * 2;
 				this.jumping = true;
