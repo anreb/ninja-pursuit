@@ -108,7 +108,7 @@ class Player2 {
 	}
 
 	moveLeft() {
-		if (keys[100]) {
+		if (keys[37]) {
 			if (this.velX > -this.speed) {
 				this.velX--;
 			}
@@ -118,7 +118,7 @@ class Player2 {
 	}
 
 	moveRigth() {
-		if (keys[102]) {
+		if (keys[38]) {
 			if (this.velX < this.speed) {
 				this.velX++;
 			}
@@ -128,7 +128,7 @@ class Player2 {
 	}
 
 	jump() {
-		if (keys[104]) {
+		if (keys[39]) {
 			if (!this.jumping) {
 				this.velY = -this.jumpStrength * 2;
 				this.jumping = true;
