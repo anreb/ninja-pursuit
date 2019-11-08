@@ -5,23 +5,22 @@ const images = {
 	ninjaBoy: './assets/boyNinjaSprite.png',
 	bg: './assets/backgrounds/bg2.jpg',
 	ninjaGirl: './assets/girlNinjaSprite.png',
-	dino: './assets/dino/png/Idle (1).png',
-	santa: './assets/santa/png/Idle (1).png',
-	winner: './assets/winner.png'
+	winner: './assets/winner.png',
+	jump: './assets/jumpSound.mp3',
+	naruto: './assets/narutoSong.mp3'
 };
-
-const winnerImage = new Image();
-winnerImage.src = images.winner;
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const keys = [];
 const friction = 0.8;
+const jumpSound = new Audio(images.jump);
+const inGameSound = new Audio(images.naruto);
 const gravity = 0.98;
 let interval;
 let gameStarted = false;
 let platforms = [];
 let frames = 0;
-let time = 30;
+let time = 3;
 let winner = false;
 
 /**
@@ -30,6 +29,9 @@ let winner = false;
 const board = new Board();
 const player1 = new Player1();
 const player2 = new Player2();
+const winnerImage = new Winner();
+const gWinner = new girlWinner();
+const bWinner = new boyWinner();
 /**
  * Game borders
  */

@@ -1,3 +1,9 @@
+html {
+	font-family: 'Yeon Sung', cursive;
+	margin: 0;
+	padding: 0;
+}
+
 body {
 	text-align: center;
 	background-image: url('../assets/html-background.jpg');
@@ -21,4 +27,11 @@ img {
 
 h2 {
 	color: aliceblue;
+	font-size: 34px;
+	margin-top: 0;
+}
+
+h3 {
+	color: #ffffff;
+	font-size: 25px;
 }

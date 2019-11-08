@@ -68,6 +68,7 @@ function update() {
 function startGame() {
 	gameStarted = true;
 	if (interval) return;
+	inGameSound.play();
 	interval = setInterval(update, 1000 / 60);
 }
 
@@ -76,6 +77,7 @@ function startGame() {
  */
 function gameOver() {
 	//gameStarted = false;
+	inGameSound.pause();
 	clearInterval(interval);
 }
 
@@ -105,8 +107,8 @@ function timer() {
 	if (frames % 60 === 0) {
 		time--;
 	}
-	ctx.font = '30px Verdana';
-	ctx.fillText(`${time}`, canvas.width / 2 - 30, canvas.height / 2 - 30);
+	ctx.font = 'normal bold 50px Verdana';
+	ctx.fillText(`${time}`, canvas.width / 2 - 45, canvas.height / 2);
 	if (time === 0) {
 		winner = 'boy';
 		gameOver();
@@ -125,13 +127,11 @@ function restartGame() {
  */
 function printWinner() {
 	if (winner === 'boy') {
-		//ctx.drawImage(winnerImage, 20, 42, 375, 395, this.x, this.y, this.width, this.height);
-		ctx.fillText(`Santa won!!`, canvas.width / 2 - 60, 100);
-		ctx.fillText(`Press 'r' to restart`, canvas.width / 2 - 60, 140);
+		winnerImage.draw();
+		bWinner.draw();
 	} else if (winner === 'girl') {
-		//ctx.drawImage(winnerImage, 20, 42, 375, 395, this.x, this.y, this.width, this.height);
-		ctx.fillText(`Dino won!!`, canvas.width / 2 - 60, 100);
-		ctx.fillText(`Press 'r' to restart`, canvas.width / 2 - 60, 140);
+		winnerImage.draw();
+		gWinner.draw();
 	}
 }
 
