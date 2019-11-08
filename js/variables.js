@@ -20,7 +20,7 @@ let interval;
 let gameStarted = false;
 let platforms = [];
 let frames = 0;
-let time = 3;
+let time = 30;
 let winner = false;
 
 /**
