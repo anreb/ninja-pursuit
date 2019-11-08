@@ -127,11 +127,21 @@ function restartGame() {
  */
 function printWinner() {
 	if (winner === 'boy') {
+		ctx.fillStyle = 'black';
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
 		winnerImage.draw();
 		bWinner.draw();
+		ctx.fillStyle = '#FFFFFF';
+		ctx.font = '30px Arial';
+		ctx.fillText(`Press 'r' to restart game`, canvas.width / 2 - 160, canvas.height / 2 + 115);
 	} else if (winner === 'girl') {
+		ctx.fillStyle = 'black';
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
 		winnerImage.draw();
 		gWinner.draw();
+		ctx.fillStyle = '#FFFFFF';
+		ctx.font = '30px Arial';
+		ctx.fillText(`Press 'r' to restart game`, canvas.width / 2 - 160, canvas.height / 2 + 100);
 	}
 }
 

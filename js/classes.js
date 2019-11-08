@@ -217,3 +217,20 @@ class boyWinner {
 		ctx.drawImage(this.img, 0, 0, 245, 250, this.x, this.y, this.width, this.height);
 	}
 }
+
+class startScreen {
+	constructor() {
+		this.x = 0;
+		this.y = 0;
+		this.width = canvas.width;
+		this.height = canvas.height;
+	}
+
+	draw() {
+		ctx.fillStyle = 'black';
+		ctx.fillRect(this.x, this.y, this.width, this.height);
+		ctx.fillStyle = '#FFFFFF';
+		ctx.font = '30px Arial';
+		ctx.fillText(`Press 'enter' to start game`, this.width / 2 - 190, this.height / 2);
+	}
+}

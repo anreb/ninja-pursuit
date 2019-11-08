@@ -32,6 +32,7 @@ const player2 = new Player2();
 const winnerImage = new Winner();
 const gWinner = new girlWinner();
 const bWinner = new boyWinner();
+const startIMG = new startScreen();
 /**
  * Game borders
  */

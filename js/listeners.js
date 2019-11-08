@@ -1,6 +1,12 @@
 /**
 * Game listeners
 */
+window.onload = function() {
+	if (winner === false) {
+		startIMG.draw();
+	}
+};
+
 document.body.addEventListener('keydown', (e) => {
 	switch (e.keyCode) {
 		case 13:
